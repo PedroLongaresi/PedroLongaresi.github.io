@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comemorando nosso Tempo - Eu e Gloria</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('images/image1.jpg'); /* Substitua pelo link da sua foto de fundo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        #header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7); /* Adiciona uma camada semi-transparente para melhor leitura do texto */
+            color: #fff;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #content {
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+        }
+
+        #gallery {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        #gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Comemorando nosso Tempo - Eu e Gloria</h1>
+    </div>
+
+    <div id="container">
+        <div id="overlay"></div>
+        <div id="content">
+            <h2>Felizes <span id="years">X</span> anos, <span id="months">X</span> meses, <span id="days">X</span> dias, <span id="hours">X</span> horas, <span id="minutes">X</span> minutos e <span id="seconds">X</span> segundos juntos!</h2>
+            <p>Desde <span id="startYear">XXXX</span></p>
+            <p id="timeCounter"></p>
+            <div id="gallery">
+                <!-- Substitua os links abaixo pelos links de suas fotos -->
+                <img src="link_da_foto1.jpg" alt="Foto 1">
+                <img src="link_da_foto2.jpg" alt="Foto 2">
+                <img src="link_da_foto3.jpg" alt="Foto 3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Defina a data de início do relacionamento
+        var startDate = new Date('YYYY-MM-DD'); // Substitua YYYY-MM-DD pela data real de início
+
+        function updateCounter() {
+            var currentDate = new Date();
+            var timeDifference = currentDate - startDate;
+
+            var years = Math.floor(timeDifference / (365.25 * 24 * 60 * 60 * 1000));
+            var remainingTime = timeDifference % (365.25 * 24 * 60 * 60 * 1000);
+
+            var months = Math.floor(remainingTime / (30.44 * 24 * 60 * 60 * 1000));
+            remainingTime %= (30.44 * 24 * 60 * 60 * 1000);
+
+            var days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+            remainingTime %= (24 * 60 * 60 * 1000);
+
+            var hours = Math.floor(remainingTime / (60 * 60 * 1000));
+            remainingTime %= (60 * 60 * 1000);
+
+            var minutes = Math.floor(remainingTime / (60 * 1000));
+            remainingTime %= (60 * 1000);
+
+            var seconds = Math.floor(remainingTime / 1000);
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            document.getElementById('timeCounter').innerText = 'Estamos juntos há ' + years + ' anos, ' + months + ' meses, ' + days + ' dias, ' + hours + ' horas, ' + minutes + ' minutos e ' + seconds + ' segundos!';
+        }
+
+        // Atualize o contador a cada segundo
+        setInterval(updateCounter, 1000);
+
+        // Atualize o contador inicialmente ao carregar a página
+        updateCounter();
+    </script>
+</body>
+</html>
